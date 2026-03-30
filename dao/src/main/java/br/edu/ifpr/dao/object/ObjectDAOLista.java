@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.edu.ifpr.dao.Produto;
 
-public class ObjectDAOLista implements ObjectDAO{
+public class ObjectDAOLista implements ObjectDAO {
     private List<Object> objects;
 
     public ObjectDAOLista() {
@@ -24,9 +24,9 @@ public class ObjectDAOLista implements ObjectDAO{
     @Override
     public Object buscarPorId(int id) {
         for (Object o : objects) {
-            if (o instanceof Produto){
-                Produto p = (Produto)o;
-                if(p.getId() == id){
+            if (o instanceof Produto) {
+                Produto p = (Produto) o;
+                if (p.getId() == id) {
                     return p;
                 }
             }
@@ -36,8 +36,13 @@ public class ObjectDAOLista implements ObjectDAO{
 
     @Override
     public void remover(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remover'");
-    }
+        Object objetoEncontrado = buscarPorId(id);
 
+        if (objetoEncontrado != null) {
+            objects.remove(objetoEncontrado);
+            System.out.println("Objeto com ID " + id + " removido com sucesso!");
+        } else {
+            System.out.println("ID " + id + " não encontrado.");
+        }
+    }
 }
